@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>User Registration</h1>
+    <form action="/formesub" method="post">
+        <input type="hidden" name="id" value="<%= editdata ? editdata._id : '' %>">
+        <label>Name:</label>
+        <input type="text" name="name" value="<%= editdata ? editdata.name : '' %>">
+        
+        <label>Surname:</label>
+        <input type="text" name="surname" value="<%= editdata ? editdata.surname : '' %>">
+        
+        <label>Email:</label>
+        <input type="email" name="Email" value="<%= editdata ? editdata.Email : '' %>">
+        
+        <input type="submit" value="<%= editdata ? 'Update' : 'Submit' %>">
+    </form>
+
+    <h2>User List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.((item) => { %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.surname %></td>
+                    <td><%= item.Email %></td>
+                    <td>
+                        <button><a href="/deleteId?delete=<%= item._id %>">Delete</a></button>
+                        <button><a href="/update?up=<%= item._id %>">Edit</a></button>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
